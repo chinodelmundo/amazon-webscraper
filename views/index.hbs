@@ -42,7 +42,7 @@
                                 {{#each products as |product|}}
                                     <tr>
                                         <td>{{product.name}}</td>
-                                        <td align="right">{{product.price}}</td>
+                                        <td align="right">{{product.price.currency}}{{product.price.whole}}.{{product.price.decimal}}</td>
                                         <td><a href="{{product.link}}">Link</a></td>
                                     </tr>
                                 {{/each}}
@@ -59,7 +59,7 @@
     $('#results-table').DataTable({
         "lengthMenu": [[-1, 20, 50],['All', 20, 50]],
         "bSort": true,
-        "aaSorting": "",
+        "aaSorting": [],
         "pagingType": "simple"
     });
 </script>

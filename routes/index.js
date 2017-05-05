@@ -13,7 +13,11 @@ router.post('/', function(req, res, next) {
 	xray(req.body.url, '#mainResults', {
   		products: xray('.s-result-item', [{
   			name: xray('.s-access-detail-page h2'),
-  			price: xray('.sx-price-whole'),
+  			price: {
+  					currency: xray('.sx-price-currency'),
+  					whole: xray('.sx-price-whole'),
+  					decimal: xray('.sx-price-fractional')
+  				},
   			link: xray('.s-access-detail-page@href')
   		}])
 	})(function(err, obj) {
