@@ -7,13 +7,13 @@
 	<div class="form-container">
 		<form class="form-horizontal" method="POST">
 			<div class="form-group">
-                <label class="col-md-2 control-label"> URL </label>
+                <label class="col-md-1 control-label"> URL </label>
                 <div class="col-md-6">
                     <textarea class="form-control" name="url" rows="4" required>https://www.amazon.com/b/ref=s9_acss_bw_cg_WLCP_2a1_w?ie=UTF8&node=2407749011&pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-5&pf_rd_r=55FPTWSVRPJ0NTN88QWZ&pf_rd_t=101&pf_rd_p=ca498e5a-69ad-4e65-950c-7539560631e3&pf_rd_i=2335752011</textarea>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-2 col-md-offset-2">
+                <div class="col-md-1 col-md-offset-1">
                     <button type="submit" class="btn btn-primary" id="submit-button">
                         Submit
                     </button>
@@ -24,9 +24,9 @@
 
 	<div class="results-container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="products-found">
-                    Products Found:
+                    Products Found: {{products.length}}
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">  
@@ -35,7 +35,8 @@
                                 <tr>
                                     <th>Product Name</th>
                                     <th>Price</th>
-                                    <th>Link</th>
+                                    <th>Rating</th>
+                                    <th>Reviews</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +44,16 @@
                                     <tr>
                                         <td>{{product.name}}</td>
                                         <td align="right">{{product.price.currency}}{{product.price.whole}}.{{product.price.decimal}}</td>
-                                        <td><a href="{{product.link}}">Link</a></td>
+                                        <td>{{product.rating}}</td>
+                                        <td>
+                                            <form action="/reviews" method="POST">
+                                                <input type="hidden" name="url" value="{{product.link}}" />
+                                                <input type="hidden" name="name" value="{{product.name}}" />
+                                                <input type="hidden" name="price" value="{{product.price.currency}}{{product.price.whole}}.{{product.price.decimal}}" />
+                                                <input type="hidden" name="rating" value="{{product.rating}}" />
+                                                <input type="submit" class="btn" value="View" />
+                                            </form>
+                                        </td>
                                     </tr>
                                 {{/each}}
                             </tbody>

@@ -59,3 +59,10 @@ table.dataTable thead .sorting:after {
 	padding: 10px 0 10px;
 	margin-bottom: 10px;
 }
+
+.reviews-found {
+    font-weight: bold;
+    padding: 20px 0 10px;
+    margin-bottom: 10px;
+    border-bottom: 1pt solid #eee;
+}

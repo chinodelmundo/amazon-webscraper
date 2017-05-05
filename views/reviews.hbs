@@ -1,0 +1,72 @@
+<div class="main-content">
+	{{#if message}}
+        <div class="error-message">
+		  {{message}}
+	    </div>
+    {{/if}}
+	<div class="product-details">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-1">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Product Name</td>
+                            <td>{{product.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>{{product.price}}</td>
+                        </tr>
+                        <tr>
+                            <td>Rating</td>
+                            <td>{{product.rating}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</div>
+
+	<div class="results-container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="reviews-found">
+                    Reviews Found: {{reviews.length}}
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">  
+                        <table class="table table-hover table-bordered" id="results-table" width="100%">
+                            <thead>    
+                                <tr>
+                                    <th>Reviewer</th>
+                                    <th>Review</th>
+                                    <th>Rating</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each reviews as |review|}}
+                                    <tr>
+                                        <td>{{review.author}}</td>
+                                        <td>{{review.text}}</td>
+                                        <td>c</td>
+                                        <td>d</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<script>
+    $('#results-table').DataTable({
+        "lengthMenu": [[-1, 20, 50],['All', 20, 50]],
+        "bSort": true,
+        "aaSorting": [],
+        "pagingType": "simple"
+    });
+</script>
