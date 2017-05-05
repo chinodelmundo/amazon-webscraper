@@ -1,0 +1,60 @@
+<div class="main-content">
+	{{#if message}}
+        <div class="error-message">
+		  {{message}}
+	    </div>
+    {{/if}}
+	<div class="form-container">
+		<form class="form-horizontal" method="POST">
+			<div class="form-group">
+                <label class="col-md-2 control-label"> URL </label>
+                <div class="col-md-6">
+                    <textarea class="form-control" name="url" rows="4" required>https://www.amazon.com/b/ref=s9_acss_bw_cg_WLCP_2a1_w?ie=UTF8&node=2407749011&pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-5&pf_rd_r=55FPTWSVRPJ0NTN88QWZ&pf_rd_t=101&pf_rd_p=ca498e5a-69ad-4e65-950c-7539560631e3&pf_rd_i=2335752011</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 col-md-offset-2">
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
+                </div>
+            </div>
+		</form>
+	</div>
+
+	<div class="results-container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="products-found">
+                    Products Found: {{results.count}}
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">  
+                        <table class="table table-hover table-bordered" id="results-table" width="100%">
+                            <thead>    
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each results.products as |product|}}
+                                    <tr>
+                                        <td>{{product.name}}</td>
+                                        <td align="right">{{product.price}}</td>
+                                        <td><a href="{{product.link}}">Link</a></td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<script>
+    $('#results-table').DataTable();
+</script>
