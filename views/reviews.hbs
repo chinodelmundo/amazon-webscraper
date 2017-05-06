@@ -10,16 +10,22 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>Product Name</td>
+                            <td class="row-identifier">Product Name:</td>
                             <td>{{product.name}}</td>
                         </tr>
                         <tr>
-                            <td>Price</td>
+                            <td class="row-identifier">Price:</td>
                             <td>{{product.price}}</td>
                         </tr>
                         <tr>
-                            <td>Rating</td>
+                            <td class="row-identifier">Rating:</td>
                             <td>{{product.rating}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <a href="{{results.link}}">Link</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -31,7 +37,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="reviews-found">
-                    Reviews Found: {{reviews.length}}
+                    Reviews Found: {{results.reviews.length}}
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">  
@@ -45,12 +51,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each reviews as |review|}}
+                                {{#each results.reviews as |review|}}
                                     <tr>
                                         <td>{{review.author}}</td>
                                         <td>{{review.text}}</td>
-                                        <td>c</td>
-                                        <td>d</td>
+                                        <td>{{review.rating}}</td>
+                                        <td>{{review.date}}</td>
                                     </tr>
                                 {{/each}}
                             </tbody>
@@ -64,9 +70,8 @@
 
 <script>
     $('#results-table').DataTable({
-        "lengthMenu": [[-1, 20, 50],['All', 20, 50]],
+        "lengthMenu": [[10, 20, 50, -1],[10, 20, 50, 'All']],
         "bSort": true,
-        "aaSorting": [],
-        "pagingType": "simple"
+        "aaSorting": []
     });
 </script>

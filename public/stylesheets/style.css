@@ -66,3 +66,8 @@ table.dataTable thead .sorting:after {
     margin-bottom: 10px;
     border-bottom: 1pt solid #eee;
 }
+
+.row-identifier {
+    font-weight: bold;
+    text-align: right;
+}

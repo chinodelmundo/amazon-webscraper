@@ -12,15 +12,19 @@ router.post('/', function(req, res, next) {
   		products: xray('.s-result-item', [{
   			name: xray('.s-access-detail-page h2'),
   			price: {
-  					currency: xray('.sx-price-currency'),
-  					whole: xray('.sx-price-whole'),
-  					decimal: xray('.sx-price-fractional')
+  					currency: '.sx-price-currency',
+  					whole: '.sx-price-whole',
+  					decimal: '.sx-price-fractional'
   				},
-        rating: xray('.a-icon-star .a-icon-alt'),
-  			link: xray('.s-access-detail-page@href')
+        rating: '.a-icon-star .a-icon-alt',
+  			link: '.s-access-detail-page@href'
   		}])
 	})(function(err, obj) {
-		res.render('index', { products: obj.products});
+    if(err){
+      console.log(err);
+    }else{
+      res.render('index', { products: obj.products});
+    }
 	});
 });
 
@@ -36,13 +40,18 @@ router.post('/reviews', function(req, res, next) {
     rating: req.body.rating
   };
 
-  xray(req.body.url, '#reviewsMedley', {
-    reviews: xray('.review', [{
-      author: xray('.author'),
-      text: xray('.a-expander-partial-collapse-content')
-    }])
-  })(function(err, obj) {
-    res.render('reviews', {product: product, reviews: obj.reviews});
+  xray(req.body.url, '#reviews-medley-footer a@href')(function(err, link) {
+    xray(link.replace('recent', 'helpful'),{
+      link: '#cm_cr-review_list .a-declarative a@href',
+      reviews: xray('#cm_cr-review_list .review', [{
+        author: '.author',
+        text: '.review-text',
+        rating: '.a-icon-star .a-icon-alt',
+        date: '.review-date'
+      }])
+    })(function(err, obj) {
+      res.render('reviews', {product: product, results: obj});
+    });
   });
 });
 
