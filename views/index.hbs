@@ -36,7 +36,7 @@
                                     <th style="width:50%">Product Name</th>
                                     <th>Price</th>
                                     <th>Rating</th>
-                                    <th>Reviews</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,7 +51,9 @@
                                                 <input type="hidden" name="name" value="{{product.name}}" />
                                                 <input type="hidden" name="price" value="{{product.price.currency}}{{product.price.whole}}.{{product.price.decimal}}" />
                                                 <input type="hidden" name="rating" value="{{product.rating}}" />
-                                                <input type="submit" class="btn" value="View" />
+                                                <input type="hidden" name="start" value="1" />
+                                                <input type="hidden" name="end" value="5" />
+                                                <input type="submit" class="btn" value="Reviews" />
                                             </form>
                                         </td>
                                     </tr>

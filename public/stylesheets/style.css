@@ -71,3 +71,24 @@ table.dataTable thead .sorting:after {
     font-weight: bold;
     text-align: right;
 }
+
+.pages-form-title {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.pages-form-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 20px 0 10px 0;
+}
+
+.product-details {
+    border-bottom: 1pt solid #ccc;
+    margin: 0 50px 0 50px;
+}
+
+.reviews-form {
+    padding-top: 20px;
+}
