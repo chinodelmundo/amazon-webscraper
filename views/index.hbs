@@ -71,6 +71,10 @@
     $('#results-table').DataTable({
         "lengthMenu": [[10, 20, 50, -1],[10, 20, 50, 'All']],
         "bSort": true,
-        "aaSorting": []
+        "aaSorting": [],
+        "columnDefs": [{
+            "targets": 3,
+            "orderable": false
+        }]
     });
 </script>

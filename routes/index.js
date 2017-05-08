@@ -16,6 +16,10 @@ var getReviews = function(url){
       if(err){
         reject(err);
       }else{
+        obj.reviews = obj.reviews.map(function(review){
+          review.date = review.date.replace('on ', '');
+          return review;
+        });
         resolve(obj.reviews);
       }
     });

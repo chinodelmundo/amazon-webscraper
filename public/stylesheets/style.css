@@ -34,8 +34,10 @@
 }
 
 .reviews-found {
+    -webkit-flex: 1;
+    flex: 1;
     font-weight: bold;
-    padding: 20px 0 10px;
+    padding: 20px 20px 10px;
     margin-bottom: 10px;
     border-bottom: 1pt solid #eee;
 }
@@ -76,6 +78,17 @@
     display: flex;
     border-bottom: 1pt solid #ccc;
     margin: 0 50px 0 50px;
+}
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.download-btn-container {
+    margin: 0 10px 0 10px;
 }
 
 table.dataTable thead .sorting,
