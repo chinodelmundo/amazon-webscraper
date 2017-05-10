@@ -45,6 +45,7 @@ var getProdcutDetails = function(link){
       if(err){
         reject(err);
       }else{
+        obj.name = obj.name.trim();
         resolve(obj);
       }
     });
