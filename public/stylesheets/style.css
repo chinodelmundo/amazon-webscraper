@@ -91,6 +91,14 @@
     margin: 0 10px 0 10px;
 }
 
+#get-products > div, #get-reviews > div{
+    border-top: none;
+}
+
+.form-panel-body {
+    padding-top: 50px;
+}
+
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc,

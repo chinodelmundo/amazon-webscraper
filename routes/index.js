@@ -35,6 +35,22 @@ var getReviewsPromises = function(link, start, end){
   return reviewsPromises;
 };
 
+var getProdcutDetails = function(link){
+  return new Promise(function(resolve, reject) {
+    xray(link, {
+      name: '#productTitle',
+      price: '#priceblock_ourprice',
+      rating: '.a-icon-star .a-icon-alt'
+    })(function(err, obj) {
+      if(err){
+        reject(err);
+      }else{
+        resolve(obj);
+      }
+    });
+  });
+}
+
 router.get('/', function(req, res, next) {
   	res.render('index');
 });
@@ -44,10 +60,10 @@ router.post('/', function(req, res, next) {
   		products: xray('.s-result-item', [{
   			name: xray('.s-access-detail-page h2'),
   			price: {
-  					currency: '.sx-price-currency',
-  					whole: '.sx-price-whole',
-  					decimal: '.sx-price-fractional'
-  				},
+    					currency: '.sx-price-currency',
+    					whole: '.sx-price-whole',
+    					decimal: '.sx-price-fractional'
+    				},
         rating: '.a-icon-star .a-icon-alt',
   			link: '.s-access-detail-page@href'
   		}])
@@ -62,7 +78,6 @@ router.get('/reviews', function(req, res, next) {
 });
 
 router.post('/reviews', function(req, res, next) {
-
   var product = {
     name: req.body.name,
     price: req.body.price,
@@ -86,14 +101,31 @@ router.post('/reviews', function(req, res, next) {
           reviews = reviews.concat(results[i]);
         }
 
-        var obj = {
-          product: product,
-          link: link,
-          reviews: reviews,
-          pages: pages
-        };
+        if(req.body.noProductDetails){
+          getProdcutDetails(req.body.url)
+            .then(function(product){
+              var obj = {
+                product: product,
+                link: link,
+                reviews: reviews,
+                pages: pages
+              };
 
-        res.render('reviews', {obj: obj});
+              res.render('reviews', {obj: obj});
+            })
+            .catch(function(err){
+              res.render('reviews', {message: err});
+            })
+        }else{
+          var obj = {
+            product: product,
+            link: link,
+            reviews: reviews,
+            pages: pages
+          };
+
+          res.render('reviews', {obj: obj});
+        }
       })
       .catch(function(err){
         res.render('reviews', {message: err});
